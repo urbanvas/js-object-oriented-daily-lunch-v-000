@@ -21,6 +21,11 @@ class Neighborhood {
       return this.id === customer.neighborhoodId
     }.bind(this))
   }
+  meals() {
+  const allMeals = this.customers().map(customer => customer.meals());
+  const merged = [].concat.apply([], allMeals);
+  return [...new Set(merged)];
+}
 }
 
 class Customer {
