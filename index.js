@@ -36,7 +36,7 @@ class Customer {
     }.bind(this))
   }
   meals () {
-    return this.deliveries().map(delivery => store.meals[`${delivery.mealId}`])
+    return this.deliveries().map(delivery => delivery.meal())
   }
 }
 
