@@ -1,4 +1,3 @@
-// global datastore
 let store = { neighborhoods: [], meals: [], customers: [], deliveries: [] };
 
 let neighborhoodId = 0
@@ -36,9 +35,11 @@ class Customer {
       return this.id === delivery.customerId
     }.bind(this))
   }
-  meals() {
-        return this.deliveries().map(delivery => delivery.meal());
-      }
+  meals () {
+    return this.deliveries().filter(function (delivery) {
+      return this.id === delivery.customerId
+    }.bind(this))
+  }
 }
 
 class Meal {
@@ -58,9 +59,11 @@ class Delivery {
     this.id = ++deliveryId
     store.deliveries.push(this)
   }
-  meal() {
-        return store.meals.find(meal => meal.id === this.mealId);
-      }
+  meal () {
+    return store.meals.find(function (meal) {
+      return this.mealId === meal.id
+    }.bind(this))
+  }
   customer () {
     return store.customers.find(function (customer) {
       return this.customerId === customer.id
