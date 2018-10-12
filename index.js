@@ -50,6 +50,14 @@ class Meal {
   deliveries() {
     return store.deliveries.filter(delivery => delivery.mealId === this.id);
   }
+  customers() {
+  const allCustomers = this.deliveries().map(delivery => delivery.customer());
+  return [...new Set(allCustomers)];
+}
+
+static byPrice() {
+  return store.meals.sort((a, b) => a.price < b.price);
+}
 }
 
 class Delivery {
