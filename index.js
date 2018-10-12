@@ -36,9 +36,7 @@ class Customer {
     }.bind(this))
   }
   meals () {
-    return this.deliveries().filter(function (delivery) {
-      return this.id === delivery.customerId
-    }.bind(this))
+    return this.deliveries().map(delivery => store.meals[`${delivery.mealId}`])
   }
 }
 
